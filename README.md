@@ -13,8 +13,9 @@ Maintenant vous pouvez dynamiser cette page en récupérant et postant les donn�
 Pour récupérer les poneys: https://node-test-nbwns.c9.io/ponies
 
 Pour envoyer un nouveau poney: https://node-test-nbwns.c9.io/pony en POST
+
 Données à envoyer sous ce format:
-{name: "Nom du poney", description: "Description du poney"}
+`{name: "Nom du poney", description: "Description du poney"}`
 
 Si l'URL ne répond pas, faites une issue et je lancerai le serveur :)
 
