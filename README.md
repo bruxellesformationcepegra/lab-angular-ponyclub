@@ -8,7 +8,7 @@
 
 ## 2. Rendez la page dynamique
 
-Maintenant vous pouvez dynamiser cette page en récupérant et postant les données via AJAX avec le [service $http](https://docs.angularjs.org/tutorial/step_05)
+Maintenant vous pouvez dynamiser cette page en récupérant et postant les données via AJAX avec le [service $http](https://docs.angularjs.org/tutorial/step_07)
 
 Pour récupérer les poneys: https://ponies-nbwns.c9users.io/ponies
 
