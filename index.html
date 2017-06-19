@@ -1,18 +1,28 @@
-<html>
+<html ng-app="ponyApp">
     <head>
         <meta charset="utf-8"/>
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-        <script src="ponyclub.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+        <script src="js/ponyclub.js"></script>
     </head>
-    <body>
+    <body ng-controller="PonyController as pc">
         <div class="container">
             <h1>Pony Club</h1>
             <div class="row">
                 <div class="col-md-8">
-                    <div class="panel panel-default">
-                      <div class="panel-heading">Fluttershy</div>
+                    <div class="panel panel-default" ng-repeat="pony in pc.ponies | filter:pc.searchText">
+                      <div class="panel-heading">{{pony.name}}</div>
                       <div class="panel-body">
-                        She's so pretty
+                        {{pony.description}}
+                      </div>
+                    </div>
+                    <div class="loader" ng-show="pc.loading">
+                        <img src="img/spin.gif"/>
+                    </div>
+                    <div class="panel panel-danger" ng-show="pc.error">
+                      <div class="panel-heading">Error</div>
+                      <div class="panel-body">
+                        Could not load data from server. Please try again later.
                       </div>
                     </div>
                 </div>
@@ -23,7 +33,7 @@
                             <form>
                                   <div class="form-group">
                                     <label for="name">Name</label>
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+                                    <input ng-model="pc.searchText" type="text" class="form-control" id="name" name="name" placeholder="Name">
                                   </div>
                               </form>
                           </div>
@@ -31,18 +41,18 @@
                     <div class="panel panel-info">
                         <div class="panel-heading">Add new pony to the club</div>
                           <div class="panel-body">
-                            <form>
+                            <form ng-submit="pc.add()">
                                   <div class="form-group">
                                     <label for="name">Name</label>
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+                                    <input ng-model="pc.newPony.name" type="text" class="form-control" id="name" name="name" placeholder="Name">
                                   </div>
                               <div class="form-group">
                                 <label for="description">Description</label>
-                                <input type="text" class="form-control" id="description" name="description" placeholder="Description">
+                                <input ng-model="pc.newPony.description" type="text" class="form-control" id="description" name="description" placeholder="Description">
                               </div>
                                 <div class="form-group">
                                     <div class="col-sm-10">
-                                      <button type="submit" class="btn btn-primary">Add</button>
+                                      <button type="submit" class="btn btn-primary" ng-disabled="pc.error">Add</button>
                                     </div>
                                 </div>
                               </form>
@@ -51,5 +61,6 @@
                 </div>
             </div>
         </div>
+        
     </body>
 </html>
